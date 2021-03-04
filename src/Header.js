@@ -14,7 +14,7 @@ function Header() {
         className="btn btn-border"
         onClick={(e) => handleGenerateBasicQuiz(e)}
       >
-        Generate Random Simple Quiz
+        Get Random Simple Quiz
       </button>
       <button className="btn btn-border">Create Quiz</button>
       <button className="btn btn-border">Find By Category</button>

@@ -1,4 +1,4 @@
-export function getQuizSet(amount = 10, category = null) {
+export async function getQuizSet(amount = 10, category = null) {
   const apiUrl = `https://opentdb.com/api.php?amount=${amount}${
     category ? "category=" + category : ""
   }`;
