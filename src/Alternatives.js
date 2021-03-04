@@ -3,8 +3,9 @@ import { fixString, simpleArrayShuffle } from "./utils";
 import { useAppContext } from "./AppContextProvider";
 
 function Alternatives() {
-  const { currentQuestion } = useAppContext();
+  const { currentQuestion, submitAnswer, questionReady } = useAppContext();
   const [listOfAlternatives, setListOfAlternatives] = useState([]);
+  const [currentAnswer, setCurrentAnswer] = useState(null);
   useEffect(() => {
     if (
       currentQuestion !== undefined &&
@@ -19,9 +20,13 @@ function Alternatives() {
       setListOfAlternatives(shuffledArray);
     }
   }, [currentQuestion]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    //submitAnswer()
+    if (currentAnswer && questionReady) {
+      submitAnswer(currentAnswer);
+    }
+    setCurrentAnswer(null);
   };
   return (
     <section
@@ -39,6 +44,7 @@ function Alternatives() {
                       type="radio"
                       value={fixString(alternative)}
                       name="questions"
+                      onChange={(e) => setCurrentAnswer(e.currentTarget.value)}
                     />
                     <label>{` ${fixString(alternative)}`}</label>
                   </div>

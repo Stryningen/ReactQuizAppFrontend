@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useAppContext } from "./AppContextProvider";
 
 function InfoContainer() {
+  const { questionNumber, totalQuestions } = useAppContext();
+
   return (
     <section id="title">
-      <h4></h4>
+      {questionNumber ? (
+        <h4>{`Question ${questionNumber} / ${totalQuestions}`}</h4>
+      ) : (
+        "No quiz selected..."
+      )}
     </section>
   );
 }
