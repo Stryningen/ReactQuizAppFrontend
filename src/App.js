@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import Question from "./Question";
+import Alternatives from "./Alternatives";
+import Header from "./Header";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="flex-container-column" id="app">
+      <Header />
+      <section id="title">
+        <h1>Simple React Quiz App with API</h1>
+      </section>
+      <Question />
+      <Alternatives />
+    </main>
   );
 }
 
