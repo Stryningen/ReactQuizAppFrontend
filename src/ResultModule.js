@@ -1,4 +1,3 @@
-import React, { useCallback, useEffect, useRef } from "react";
 import { useAppContext } from "./AppContextProvider";
 
 function ResultModule() {
@@ -14,14 +13,18 @@ function ResultModule() {
   };
 
   return showResultModule ? (
-    <aside>
+    <aside
+      onClick={(e) => {
+        if (e.currentTarget === e.target) closeModule();
+      }}
+    >
       <section
         id="result-module"
         className="module-container flex-container-column"
       >
         <h2>Result of quiz:</h2>
         <p>
-          {`You managed to answer ${score} out of ${totalQuestions} questions!`}
+          {`You managed to answer correctly ${score} out of ${totalQuestions} questions!`}
         </p>
         <button
           className="btn btn-border close-module-btn"

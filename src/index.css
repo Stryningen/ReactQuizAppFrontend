@@ -51,6 +51,7 @@ aside {
   left: 0;
   height: 100vh;
   width: 100vw;
+  background-color: rgb(0, 0, 0, 0.5);
 }
 
 .flex-container-column {
@@ -204,7 +205,7 @@ aside {
   left: 50%;
   transform: translate(-50%, -60%);
   min-height: 35vh;
-  width: 80vw;
+  min-width: 80vw;
   background-color: var(--main-color);
   color: var(--secondary-color);
   box-shadow: inset 5px 5px 1px var(--main-color),

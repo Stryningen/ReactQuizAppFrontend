@@ -1,10 +1,11 @@
 import { useAppContext } from "./AppContextProvider";
 
 function Header() {
-  const { generateQuiz, setShowOptionsModule } = useAppContext();
+  const { generateQuiz, setShowOptionsModule, setIsLoading } = useAppContext();
 
   const handleGenerateBasicQuiz = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     generateQuiz();
   };
 

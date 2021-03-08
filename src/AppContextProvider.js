@@ -7,15 +7,16 @@ export function AppContextProvider({ children }) {
   const [currentQuizSet, setCurrentQuizSet] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  const [score, setScore] = useState(0);
   const [questionReady, setQuestionReady] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [showResultModule, setShowResultModule] = useState(false);
   const [showOptionsModule, setShowOptionsModule] = useState(false);
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
-  const [amount, setAmount] = useState(10);
+  const [amount, setAmount] = useState(3);
+  const [isLoading, setIsLoading] = useState(false);
 
   const generateQuiz = async () => {
     setIsFinished(false);
@@ -23,6 +24,7 @@ export function AppContextProvider({ children }) {
     setCurrentQuestion({});
     setScore(0);
     setCurrentQuizSet(await getQuizSet(amount, category, difficulty));
+    setIsLoading(false);
     document.getElementById("submit-answer").disabled = false;
   };
 
@@ -40,7 +42,6 @@ export function AppContextProvider({ children }) {
   };
 
   const handleEndOfQuiz = () => {
-    console.log("handleEndOfQuiz");
     setShowResultModule(true);
   };
 
@@ -74,8 +75,13 @@ export function AppContextProvider({ children }) {
     setShowOptionsModule,
     showOptionsModule,
     setDifficulty,
+    difficulty,
     setCategory,
+    category,
     setAmount,
+    amount,
+    isLoading,
+    setIsLoading,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
