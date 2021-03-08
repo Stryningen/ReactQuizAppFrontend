@@ -1,29 +1,40 @@
-import React, { useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useAppContext } from "./AppContextProvider";
 
 function ResultModule() {
-  const { score, totalQuestions } = useAppContext();
+  const {
+    score,
+    totalQuestions,
+    showResultModule,
+    setShowResultModule,
+  } = useAppContext();
   const moduleContainer = useRef();
-  return (
-    <section
-      ref={moduleContainer}
-      id="result-module"
-      className="flex-container-column"
-    >
-      <h2>Result of quiz:</h2>
-      <p>1 out of 10 questions!</p>
-      <p>message: you did great!</p>
-      <button
-        className="btn btn-border"
-        id="close-result-module"
-        onClick={() => {
-          moduleContainer.current.style.display = "none";
-        }}
+
+  const closeResultModule = () => {
+    setShowResultModule(false);
+  };
+
+  return showResultModule ? (
+    <aside>
+      <section
+        ref={moduleContainer}
+        id="result-module"
+        className="flex-container-column"
       >
-        Close
-      </button>
-    </section>
-  );
+        <h2>Result of quiz:</h2>
+        <p>
+          {`You managed to answer ${score} out of ${totalQuestions} questions!`}
+        </p>
+        <button
+          className="btn btn-border"
+          id="close-result-module"
+          onClick={closeResultModule}
+        >
+          Close
+        </button>
+      </section>
+    </aside>
+  ) : null;
 }
 
 export default ResultModule;

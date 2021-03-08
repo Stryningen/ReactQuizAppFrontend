@@ -11,6 +11,7 @@ export function AppContextProvider({ children }) {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [questionReady, setQuestionReady] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const [showResultModule, setShowResultModule] = useState(false);
 
   const generateQuiz = async (
     amount = 3,
@@ -40,6 +41,7 @@ export function AppContextProvider({ children }) {
 
   const handleEndOfQuiz = () => {
     console.log("handleEndOfQuiz");
+    setShowResultModule(true);
   };
 
   useEffect(() => {
@@ -66,6 +68,9 @@ export function AppContextProvider({ children }) {
     checkIsFinished,
     isFinished,
     handleEndOfQuiz,
+    showResultModule,
+    setShowResultModule,
+    score,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

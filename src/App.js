@@ -13,9 +13,7 @@ function App() {
         <Question />
         <Alternatives />
       </main>
-      <aside>
-        <ResultModule />
-      </aside>
+      <ResultModule />
     </>
   );
 }

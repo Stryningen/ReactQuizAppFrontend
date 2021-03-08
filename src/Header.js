@@ -5,6 +5,7 @@ function Header() {
 
   const handleGenerateBasicQuiz = (e) => {
     e.preventDefault();
+    console.log("hello");
     generateQuiz();
   };
 
