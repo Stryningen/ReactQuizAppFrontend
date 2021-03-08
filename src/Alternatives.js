@@ -3,7 +3,13 @@ import { fixString, simpleArrayShuffle } from "./utils";
 import { useAppContext } from "./AppContextProvider";
 
 function Alternatives() {
-  const { currentQuestion, submitAnswer, questionReady } = useAppContext();
+  const {
+    currentQuestion,
+    submitAnswer,
+    questionReady,
+    isFinished,
+    handleEndOfQuiz,
+  } = useAppContext();
   const [listOfAlternatives, setListOfAlternatives] = useState([]);
   const [currentAnswer, setCurrentAnswer] = useState(null);
   useEffect(() => {
@@ -18,6 +24,8 @@ function Alternatives() {
       const shuffledArray = simpleArrayShuffle(array);
 
       setListOfAlternatives(shuffledArray);
+    } else {
+      setListOfAlternatives([]);
     }
   }, [currentQuestion]);
 
@@ -25,6 +33,10 @@ function Alternatives() {
     e.preventDefault();
     if (currentAnswer && questionReady) {
       submitAnswer(currentAnswer);
+    }
+    if (isFinished && currentAnswer) {
+      document.getElementById("submit-answer").disabled = true;
+      handleEndOfQuiz();
     }
     setCurrentAnswer(null);
   };
@@ -39,8 +51,15 @@ function Alternatives() {
             <div className="scroll-wrapper">
               {listOfAlternatives.map((alternative, index) => {
                 return (
-                  <div className="form-input" key={index}>
+                  <div
+                    onClick={(e) =>
+                      (e.currentTarget.children[0].checked = true)
+                    }
+                    className="form-input"
+                    key={index}
+                  >
                     <input
+                      checked={currentAnswer === fixString(alternative)}
                       type="radio"
                       value={fixString(alternative)}
                       name="questions"
@@ -52,8 +71,13 @@ function Alternatives() {
               })}
             </div>
           </div>
-          <button type="submit" className="btn btn-border btn-submit">
-            Submit Answer
+          <button
+            id="submit-answer"
+            type="submit"
+            className="btn btn-border btn-submit"
+            disabled={true}
+          >
+            Answer
           </button>
         </form>
       ) : (

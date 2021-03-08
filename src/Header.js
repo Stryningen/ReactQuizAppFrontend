@@ -1,23 +1,23 @@
 import { useAppContext } from "./AppContextProvider";
 
 function Header() {
-  const { generateBasicQuiz } = useAppContext();
+  const { generateQuiz } = useAppContext();
 
   const handleGenerateBasicQuiz = (e) => {
     e.preventDefault();
-    generateBasicQuiz();
+    generateQuiz();
   };
 
   return (
     <header>
       <button
-        className="btn btn-border"
+        className="btn btn-border btn-header"
         onClick={(e) => handleGenerateBasicQuiz(e)}
       >
-        Get Random Simple Quiz
+        Quiz
       </button>
-      <button className="btn btn-border">Create Quiz</button>
-      <button className="btn btn-border">Find By Category</button>
+      <button className="btn btn-border btn-header">Options</button>
+      <button className="btn btn-border btn-header">Categories</button>
     </header>
   );
 }

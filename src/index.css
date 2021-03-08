@@ -77,7 +77,33 @@ section {
   flex-flow: column nowrap;
 }
 
-#title {
+.btn-header {
+  min-width: 5.5rem;
+}
+
+.btn-border {
+  font-size: var(--font-size-small);
+  max-width: calc((100% / 3));
+  min-height: 3.4rem;
+  padding: var(--spacing-one) var(--spacing-two);
+  box-shadow: inset 2px 2px var(--secondary-color),
+    inset -2px -2px var(--secondary-color), inset 4px 4px var(--main-color),
+    inset -4px -4px var(--main-color);
+  border: 2px solid var(--border-btn-color);
+  border-radius: 5px;
+}
+
+.btn-submit {
+  margin: auto;
+  margin-bottom: var(--spacing-five);
+  min-height: 0;
+  max-width: 6rem;
+  padding: var(--spacing-two) var(--spacing-four);
+}
+
+#info-container {
+  margin-top: auto;
+  margin-bottom: auto;
   min-height: 10vh;
   display: flex;
   flex-flow: column nowrap;
@@ -99,29 +125,29 @@ section {
 /*   Display Alternatives Component   */
 
 #display-alternatives {
-  height: 51vh;
+  height: 49vh;
   justify-content: flex-start;
   padding: 0 var(--spacing-five);
   margin-top: var(--spacing-one);
 }
 
 #display-alternatives form {
+  padding-top: var(--spacing-two);
   margin-top: var(--spacing-three);
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-end;
   min-width: 80%;
-  height: 100%;
+  height: calc(100% - var(--spacing-three));
 }
 .scroll-container {
-  margin: auto;
+  margin: auto 0;
   overflow: hidden;
-  max-height: 44vh;
+  max-height: 50vh;
 }
 
 .scroll-wrapper {
-  overflow-y: auto;
-  max-height: 44vh;
+  overflow: auto;
+  max-height: 36vh;
 }
 
 .form-input {
@@ -150,33 +176,15 @@ section {
 
 #display-question {
   padding: var(--spacing-four);
+  font-size: var(--font-size-small);
   justify-content: flex-start;
   margin: auto;
 }
 
 #display-question h3 {
-  margin-top: auto;
-  margin-bottom: var(--spacing-three);
+  margin: var(--spacing-two) 0;
 }
 
 #display-question h4 {
   margin-bottom: auto;
-}
-
-.btn-border {
-  font-size: var(--font-size-small);
-  max-width: calc((100% / 3));
-  min-height: 3.4rem;
-  padding: var(--spacing-one) var(--spacing-two);
-  box-shadow: inset 2px 2px var(--secondary-color),
-    inset -2px -2px var(--secondary-color), inset 4px 4px var(--main-color),
-    inset -4px -4px var(--main-color);
-  border: 2px solid var(--border-btn-color);
-  border-radius: 5px;
-}
-
-.btn-submit {
-  margin: var(--spacing-three) auto;
-  min-height: 0;
-  max-width: 6rem;
 }
