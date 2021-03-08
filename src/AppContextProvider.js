@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { getQuizSet } from "./api";
+import { getQuizSet, getListOfCategories } from "./api";
 
 const AppContext = React.createContext();
 
@@ -17,6 +17,11 @@ export function AppContextProvider({ children }) {
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
+  const [listOfCategories, setListOfCategories] = useState([]);
+
+  useEffect(() => {
+    setListOfCategories(getListOfCategories());
+  }, []);
 
   const generateQuiz = async () => {
     setIsFinished(false);
@@ -41,9 +46,7 @@ export function AppContextProvider({ children }) {
     }
   };
 
-  const handleEndOfQuiz = () => {
-    setShowResultModule(true);
-  };
+  const handleEndOfQuiz = () => {};
 
   useEffect(() => {
     setQuestionReady(false);
