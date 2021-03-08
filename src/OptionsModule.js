@@ -7,6 +7,8 @@ function OptionsModule() {
     difficulty,
     category,
     amount,
+    setShowCategoriesModule,
+    setShowDifficultyModule,
   } = useAppContext();
 
   const closeModule = () => {
@@ -27,12 +29,22 @@ function OptionsModule() {
         <div className="option-item">
           <span className="option-label">Difficulty:</span>
           <span>{difficulty ? difficulty : "Any"}</span>
-          <button className="btn option-btn">Change</button>
+          <button
+            className="btn option-btn"
+            onClick={() => setShowDifficultyModule(true)}
+          >
+            Change
+          </button>
         </div>
         <div className="option-item">
           <span className="option-label">Category:</span>
           <span>{category ? category : "Any"}</span>
-          <button className="btn option-btn">Change</button>
+          <button
+            className="btn option-btn"
+            onClick={() => setShowCategoriesModule(true)}
+          >
+            Change
+          </button>
         </div>
         <div className="option-item">
           <span className="option-label">Amount:</span>

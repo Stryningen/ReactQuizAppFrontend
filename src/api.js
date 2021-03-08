@@ -17,6 +17,6 @@ export async function getListOfCategories() {
   const url = "https://opentdb.com/api_category.php";
   const listOfCategories = fetch(url)
     .then((r) => r.json())
-    .then((data) => console.log(data.trivia_categories));
+    .then((data) => data.trivia_categories);
   return listOfCategories;
 }
