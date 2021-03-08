@@ -14,10 +14,10 @@ function Header() {
         className="btn btn-border btn-header"
         onClick={(e) => handleGenerateBasicQuiz(e)}
       >
-        Quiz
+        New Quiz
       </button>
       <button className="btn btn-border btn-header">Options</button>
-      <button className="btn btn-border btn-header">Categories</button>
+      <button className="btn btn-border btn-header">Made With</button>
     </header>
   );
 }

@@ -2,15 +2,21 @@ import Question from "./Question";
 import Alternatives from "./Alternatives";
 import Header from "./Header";
 import InfoContainer from "./InfoContainer";
+import ResultModule from "./ResultModule";
 
 function App() {
   return (
-    <main className="flex-container-column" id="app">
-      <Header />
-      <InfoContainer />
-      <Question />
-      <Alternatives />
-    </main>
+    <>
+      <main className="flex-container-column" id="app">
+        <Header />
+        <InfoContainer />
+        <Question />
+        <Alternatives />
+      </main>
+      <aside>
+        <ResultModule />
+      </aside>
+    </>
   );
 }
 
