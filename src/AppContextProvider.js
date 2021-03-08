@@ -12,12 +12,12 @@ export function AppContextProvider({ children }) {
   const [questionReady, setQuestionReady] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [showResultModule, setShowResultModule] = useState(false);
+  const [showOptionsModule, setShowOptionsModule] = useState(false);
+  const [difficulty, setDifficulty] = useState("");
+  const [category, setCategory] = useState("");
+  const [amount, setAmount] = useState(10);
 
-  const generateQuiz = async (
-    amount = 3,
-    category = null,
-    difficulty = null
-  ) => {
+  const generateQuiz = async () => {
     setIsFinished(false);
     setCurrentQuestionIndex(0);
     setCurrentQuestion({});
@@ -71,6 +71,11 @@ export function AppContextProvider({ children }) {
     showResultModule,
     setShowResultModule,
     score,
+    setShowOptionsModule,
+    showOptionsModule,
+    setDifficulty,
+    setCategory,
+    setAmount,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

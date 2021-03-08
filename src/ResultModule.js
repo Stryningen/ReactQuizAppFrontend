@@ -8,27 +8,24 @@ function ResultModule() {
     showResultModule,
     setShowResultModule,
   } = useAppContext();
-  const moduleContainer = useRef();
 
-  const closeResultModule = () => {
+  const closeModule = () => {
     setShowResultModule(false);
   };
 
   return showResultModule ? (
     <aside>
       <section
-        ref={moduleContainer}
         id="result-module"
-        className="flex-container-column"
+        className="module-container flex-container-column"
       >
         <h2>Result of quiz:</h2>
         <p>
           {`You managed to answer ${score} out of ${totalQuestions} questions!`}
         </p>
         <button
-          className="btn btn-border"
-          id="close-result-module"
-          onClick={closeResultModule}
+          className="btn btn-border close-module-btn"
+          onClick={closeModule}
         >
           Close
         </button>

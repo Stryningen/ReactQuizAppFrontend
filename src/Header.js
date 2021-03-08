@@ -1,11 +1,10 @@
 import { useAppContext } from "./AppContextProvider";
 
 function Header() {
-  const { generateQuiz } = useAppContext();
+  const { generateQuiz, setShowOptionsModule } = useAppContext();
 
   const handleGenerateBasicQuiz = (e) => {
     e.preventDefault();
-    console.log("hello");
     generateQuiz();
   };
 
@@ -17,7 +16,12 @@ function Header() {
       >
         New Quiz
       </button>
-      <button className="btn btn-border btn-header">Options</button>
+      <button
+        className="btn btn-border btn-header"
+        onClick={() => setShowOptionsModule(true)}
+      >
+        Options
+      </button>
       <button className="btn btn-border btn-header">Made With</button>
     </header>
   );

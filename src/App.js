@@ -3,6 +3,7 @@ import Alternatives from "./Alternatives";
 import Header from "./Header";
 import InfoContainer from "./InfoContainer";
 import ResultModule from "./ResultModule";
+import OptionsModule from "./OptionsModule";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Alternatives />
       </main>
       <ResultModule />
+      <OptionsModule />
     </>
   );
 }

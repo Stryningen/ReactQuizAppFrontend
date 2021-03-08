@@ -196,7 +196,7 @@ aside {
 
 /*   Modules   */
 
-#result-module {
+.module-container {
   margin: 0;
   padding: var(--spacing-eight) var(--spacing-four);
   position: absolute;
@@ -215,11 +215,36 @@ aside {
   z-index: 1;
 }
 
+.close-module-btn {
+  margin-top: auto;
+}
+
 #result-module * {
   margin: var(--spacing-four) auto;
   text-align: center;
 }
 
-#close-result-module {
-  margin-top: auto;
+#options-module {
+}
+
+.option-item {
+  display: flex;
+  width: 100%;
+  margin-top: var(--spacing-four);
+  align-self: flex-start;
+}
+
+.option-item:nth-child(4) {
+  margin-bottom: var(--spacing-four);
+}
+
+.option-label {
+  min-width: 4.6rem;
+}
+
+.option-btn {
+  margin: 0 var(--spacing-two);
+  margin-left: auto;
+  padding: var(--spacing-one);
+  min-width: 4rem;
 }
