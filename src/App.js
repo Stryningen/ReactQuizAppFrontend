@@ -16,6 +16,8 @@ function App() {
     listOfDifficulties,
     showDifficultyModule,
     setShowDifficultyModule,
+    setCategory,
+    setDifficulty,
   } = useAppContext();
 
   return (
@@ -29,12 +31,18 @@ function App() {
       <ResultModule />
       <OptionsModule />
       <ListModule
+        className="option-list-module"
+        setOption={(option) => setCategory(option)}
         listToShow={listOfCategories}
+        listHeader="Categories"
         showModule={showCategoriesModule}
         setShowModule={(state) => setShowCategoriesModule(state)}
       />
       <ListModule
+        className="option-list-module"
+        setOption={(option) => setDifficulty(option)}
         listToShow={listOfDifficulties}
+        listHeader="Difficulties"
         showModule={showDifficultyModule}
         setShowModule={(state) => setShowDifficultyModule(state)}
       />

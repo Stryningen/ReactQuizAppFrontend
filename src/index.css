@@ -4,6 +4,9 @@
   --secondary-color: #fafeff;
   --main-btn-color: #fafeff;
   --border-btn-color: #000;
+  --color-choice-darkbg: rgb(100, 190, 255, 0.95);
+  --color-choice-lightbg: rgb(100, 190, 255, 0.5);
+  --color-shadow: rgb(250, 254, 255, 0.04);
 
   /*   margin and padding spacing:   */
   --spacing-one: 0.25rem;
@@ -17,6 +20,8 @@
 
   /*   font-size:   */
   --font-size-small: 0.8rem;
+  --font-size-medium: 1.2rem;
+  --font-size-large: 1.6rem;
 }
 
 /*   Genaral global styling and values:   */
@@ -73,7 +78,14 @@ aside {
   outline: none;
   padding: var(--spacing-one) var(--spacing-four);
   background-color: var(--main-btn-color);
-  transform: none;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  box-shadow: inset 2px 2px var(--secondary-color),
+    inset -2px -2px var(--secondary-color), inset 4px 4px var(--main-color),
+    inset -4px -4px var(--main-color),
+    inset 0 4rem 0 var(--color-choice-lightbg);
 }
 
 /*   App specific styling and values:   */
@@ -137,16 +149,8 @@ aside {
   margin-top: var(--spacing-one);
 }
 
-#display-alternatives form {
-  padding-top: var(--spacing-two);
-  margin-top: var(--spacing-three);
-  display: flex;
-  flex-flow: column nowrap;
-  min-width: 80%;
-  height: calc(100% - var(--spacing-three));
-}
 .scroll-container {
-  margin: auto 0;
+  margin-top: auto;
   overflow: hidden;
   max-height: 50vh;
 }
@@ -156,26 +160,10 @@ aside {
   max-height: 36vh;
 }
 
-.form-input {
-  display: flex;
-  align-items: center;
-  min-height: var(--spacing-eight);
-  font-size: 1rem;
-  width: 100%;
-  margin: var(--spacing-six) 0;
-}
-
-.form-input:first-child {
-  margin-top: 0;
-}
-
-.form-input:last-child {
-  margin-bottom: 0;
-}
-
-.form-input label {
-  margin-left: var(--spacing-eight);
-  max-width: 60%;
+.alternatives {
+  margin: var(--spacing-four) 0;
+  text-align: center;
+  font-size: var(--font-size-medium);
 }
 
 /*   Display Question Component   */
@@ -211,8 +199,7 @@ aside {
   box-shadow: inset 5px 5px 1px var(--main-color),
     inset -5px -5px 1px var(--main-color),
     inset 7px 7px 1px var(--secondary-color),
-    inset -7px -7px 1px var(--secondary-color),
-    0 0 0 1px rgb(250, 254, 255, 0.04);
+    inset -7px -7px 1px var(--secondary-color), 0 0 0 1px var(--color-shadow);
   z-index: 1;
 }
 
@@ -223,9 +210,6 @@ aside {
 #result-module * {
   margin: var(--spacing-four) auto;
   text-align: center;
-}
-
-#options-module {
 }
 
 .option-item {
@@ -248,4 +232,57 @@ aside {
   margin-left: auto;
   padding: var(--spacing-one);
   min-width: 4rem;
+  transition: 0.2s;
+}
+
+.option-btn:hover {
+  box-shadow: inset 0 2rem 0 var(--color-choice-lightbg);
+}
+
+.list-content-container {
+  max-height: 55vh;
+  overflow-y: auto;
+  margin: auto;
+  padding: var(--spacing-two) var(--spacing-six);
+}
+
+.list-content-scroll {
+  overflow: hidden;
+}
+
+.option-list-item {
+  margin: var(--spacing-two) 0;
+  text-align: center;
+}
+
+#amount-option {
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  outline: none;
+  border-style: none;
+  max-width: 3rem;
+  border-bottom: 1px solid var(--secondary-color);
+  text-align: center;
+}
+
+#amount-option::placeholder {
+  color: var(--secondary-color);
+}
+
+/*   Special classes   */
+
+.last-child-hidden:last-child {
+  display: none;
+}
+
+.choice {
+  cursor: pointer;
+}
+
+.choice:hover {
+  color: var(--color-choice-darkbg);
+}
+
+.selected {
+  color: var(--color-choice-darkbg);
 }

@@ -1,5 +1,9 @@
+import { capitolizeFirstLetter } from "./utils";
+
 function ListModule(props) {
-  const { listToShow, showModule, setShowModule } = { ...props };
+  const { listToShow, showModule, setShowModule, listHeader, setOption } = {
+    ...props,
+  };
 
   return showModule ? (
     <aside
@@ -8,10 +12,24 @@ function ListModule(props) {
       }}
     >
       <section className="module-container flex-container-column">
+        <h3>{listHeader}:</h3>
         <div className="list-content-container">
-          {listToShow.map((listItem) => {
-            return <p key={listItem.id}>{listItem.name}</p>;
-          })}
+          <div className="list-content-scroll">
+            {listToShow.map((listItem) => {
+              return (
+                <p
+                  onClick={(e) => {
+                    setOption(e.target.innerText);
+                    setShowModule(false);
+                  }}
+                  className="option-list-item choice"
+                  key={listItem.id}
+                >
+                  {capitolizeFirstLetter(listItem.name)}
+                </p>
+              );
+            })}
+          </div>
         </div>
         <button
           className="btn btn-border close-module-btn"

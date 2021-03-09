@@ -17,3 +17,7 @@ export function simpleArrayShuffle(array, numberOfShuffles = 10) {
   }
   return shuffledArray;
 }
+
+export function capitolizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

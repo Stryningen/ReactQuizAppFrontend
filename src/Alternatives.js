@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { fixString, simpleArrayShuffle } from "./utils";
 import { useAppContext } from "./AppContextProvider";
 
@@ -9,9 +9,14 @@ function Alternatives() {
     questionReady,
     isFinished,
     handleEndOfQuiz,
+    isLoading,
   } = useAppContext();
+
   const [listOfAlternatives, setListOfAlternatives] = useState([]);
   const [currentAnswer, setCurrentAnswer] = useState(null);
+
+  const answerContainer = useRef();
+
   useEffect(() => {
     if (
       currentQuestion !== undefined &&
@@ -24,10 +29,21 @@ function Alternatives() {
       const shuffledArray = simpleArrayShuffle(array);
 
       setListOfAlternatives(shuffledArray);
+      document.getElementById("submit-answer").disabled = false;
     } else {
       setListOfAlternatives([]);
+      document.getElementById("submit-answer").disabled = true;
     }
   }, [currentQuestion]);
+
+  useEffect(() => {
+    const answerNodes = answerContainer.current.childNodes;
+    Array.from(answerNodes).map((answer) =>
+      answer.innerText == currentAnswer
+        ? answer.classList.add("selected")
+        : answer.classList.remove("selected")
+    );
+  }, [currentAnswer]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,44 +61,46 @@ function Alternatives() {
       className="flex-container-column column-center"
       id="display-alternatives"
     >
-      {listOfAlternatives !== undefined ? (
-        <form onSubmit={(e) => handleSubmit(e)}>
+      {!isLoading ? (
+        <>
           <div className="scroll-container">
-            <div className="scroll-wrapper">
+            <div ref={answerContainer} className="scroll-wrapper">
               {listOfAlternatives.map((alternative, index) => {
                 return (
-                  <div
-                    onClick={(e) =>
-                      (e.currentTarget.children[0].checked = true)
-                    }
-                    className="form-input"
-                    key={index}
-                  >
-                    <input
-                      checked={currentAnswer === fixString(alternative)}
-                      type="radio"
-                      value={fixString(alternative)}
-                      name="questions"
-                      onChange={(e) => setCurrentAnswer(e.currentTarget.value)}
-                    />
-                    <label>{` ${fixString(alternative)}`}</label>
+                  <div key={index}>
+                    <p
+                      onClick={(e) => {
+                        setCurrentAnswer(e.currentTarget.innerText);
+                      }}
+                      className="alternatives choice"
+                    >
+                      {fixString(alternative)}
+                    </p>
+                    <div
+                      className="last-child-hidden"
+                      style={{
+                        borderBottom: "1px solid var(--secondary-color)",
+                        width: "2rem",
+                        margin: "0 auto",
+                      }}
+                    ></div>
                   </div>
                 );
               })}
             </div>
           </div>
-          <button
-            id="submit-answer"
-            type="submit"
-            className="btn btn-border btn-submit"
-            disabled={true}
-          >
-            Answer
-          </button>
-        </form>
+        </>
       ) : (
-        "Loading..."
+        <p style={{ margin: "auto" }}>Loading...</p>
       )}
+      <button
+        onClick={(e) => handleSubmit(e)}
+        id="submit-answer"
+        type="button"
+        className="btn btn-border btn-submit"
+      >
+        Answer
+      </button>
     </section>
   );
 }

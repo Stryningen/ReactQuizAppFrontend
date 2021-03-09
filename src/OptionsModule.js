@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useAppContext } from "./AppContextProvider";
+import { capitolizeFirstLetter } from "./utils";
 
 function OptionsModule() {
   const {
@@ -7,9 +9,12 @@ function OptionsModule() {
     difficulty,
     category,
     amount,
+    setAmount,
     setShowCategoriesModule,
     setShowDifficultyModule,
   } = useAppContext();
+
+  const [editAmount, setEditAmount] = useState(false);
 
   const closeModule = () => {
     setShowOptionsModule(false);
@@ -18,7 +23,10 @@ function OptionsModule() {
   return showOptionsModule ? (
     <aside
       onClick={(e) => {
-        if (e.currentTarget === e.target) closeModule();
+        if (e.currentTarget === e.target) {
+          closeModule();
+          setEditAmount(false);
+        }
       }}
     >
       <section
@@ -28,7 +36,7 @@ function OptionsModule() {
         <h2>Options:</h2>
         <div className="option-item">
           <span className="option-label">Difficulty:</span>
-          <span>{difficulty ? difficulty : "Any"}</span>
+          <span>{difficulty ? capitolizeFirstLetter(difficulty) : "Any"}</span>
           <button
             className="btn option-btn"
             onClick={() => setShowDifficultyModule(true)}
@@ -38,7 +46,7 @@ function OptionsModule() {
         </div>
         <div className="option-item">
           <span className="option-label">Category:</span>
-          <span>{category ? category : "Any"}</span>
+          <span>{category ? capitolizeFirstLetter(category) : "Any"}</span>
           <button
             className="btn option-btn"
             onClick={() => setShowCategoriesModule(true)}
@@ -48,12 +56,39 @@ function OptionsModule() {
         </div>
         <div className="option-item">
           <span className="option-label">Amount:</span>
-          <span>{amount ? amount : 0}</span>
-          <button className="btn option-btn">Change</button>
+          {editAmount ? (
+            <input
+              id="amount-option"
+              type="number"
+              max="50"
+              min="2"
+              value={amount}
+              onChange={(e) => {
+                if (e.target.value < 2) {
+                  setAmount(2);
+                } else if (e.target.value > 50) {
+                  setAmount(50);
+                } else {
+                  setAmount(e.target.value);
+                }
+              }}
+            />
+          ) : (
+            <span>{amount ? amount : 0}</span>
+          )}
+          <button
+            onClick={() => setEditAmount(!editAmount)}
+            className="btn option-btn"
+          >
+            Change
+          </button>
         </div>
         <button
           className="btn btn-border close-module-btn"
-          onClick={closeModule}
+          onClick={() => {
+            closeModule();
+            setEditAmount(false);
+          }}
         >
           Close
         </button>

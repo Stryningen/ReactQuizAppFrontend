@@ -21,16 +21,40 @@ export function AppContextProvider({ children }) {
   const [showCategoriesModule, setShowCategoriesModule] = useState(false);
   const [showDifficultyModule, setShowDifficultyModule] = useState(false);
 
+  const listOfDifficulties = [
+    { id: -1, name: "any" },
+    { id: 0, name: "easy" },
+    { id: 1, name: "medium" },
+    { id: 2, name: "hard" },
+  ];
+
   useEffect(async () => {
     setListOfCategories(await getListOfCategories());
   }, []);
 
   const generateQuiz = async () => {
     setIsFinished(false);
+    setIsLoading(true);
     setCurrentQuestionIndex(0);
     setCurrentQuestion({});
     setScore(0);
-    setCurrentQuizSet(await getQuizSet(amount, category, difficulty));
+    const categoryToGet = listOfCategories
+      .filter((item) => item.name === category)
+      .map((category) => {
+        if (category) {
+          return category.id;
+        }
+        return "";
+      });
+    const difficultyToGet = listOfDifficulties
+      .filter((item) => item.name === difficulty)
+      .map(() => {
+        if (difficulty === "any") {
+          return "";
+        }
+        return difficulty;
+      });
+    setCurrentQuizSet(await getQuizSet(amount, categoryToGet, difficultyToGet));
     setIsLoading(false);
     document.getElementById("submit-answer").disabled = false;
   };
@@ -48,7 +72,9 @@ export function AppContextProvider({ children }) {
     }
   };
 
-  const handleEndOfQuiz = () => {};
+  const handleEndOfQuiz = () => {
+    setShowResultModule(true);
+  };
 
   useEffect(() => {
     setQuestionReady(false);
@@ -87,18 +113,13 @@ export function AppContextProvider({ children }) {
     amount,
     isLoading,
     setIsLoading,
-    listOfCategories,
+    listOfCategories: [{ id: -1, name: "Any" }, ...listOfCategories],
     showCategoriesModule,
     setShowCategoriesModule,
     showDifficultyModule,
     setShowDifficultyModule,
-    listOfDifficulties: [
-      { id: 0, name: "easy" },
-      { id: 1, name: "medium" },
-      { id: 2, name: "hard" },
-    ],
+    listOfDifficulties,
   };
-
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
 
