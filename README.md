@@ -1,4 +1,6 @@
-# This purpose of this project was to practice React
+# React Quiz App Frontend
+
+The purpose of this project was to practice React.
 
 ## Create React App
 
@@ -14,4 +16,4 @@ In the project directory, you can run:
 
 ## Open trivia DB
 
-[ Open trivia db ](https://opentdb.com/) was also used to supply questions
+[ Open trivia db ](https://opentdb.com/) was also used to supply questions.
