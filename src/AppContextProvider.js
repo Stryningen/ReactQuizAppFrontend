@@ -20,6 +20,7 @@ export function AppContextProvider({ children }) {
   const [listOfCategories, setListOfCategories] = useState(["test"]);
   const [showCategoriesModule, setShowCategoriesModule] = useState(false);
   const [showDifficultyModule, setShowDifficultyModule] = useState(false);
+  const [showMadeWithModule, setShowMadeWithModule] = useState(false);
 
   const listOfDifficulties = [
     { id: -1, name: "any" },
@@ -119,6 +120,8 @@ export function AppContextProvider({ children }) {
     showDifficultyModule,
     setShowDifficultyModule,
     listOfDifficulties,
+    showMadeWithModule,
+    setShowMadeWithModule,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }

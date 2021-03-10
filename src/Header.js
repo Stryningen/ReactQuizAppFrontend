@@ -1,7 +1,12 @@
 import { useAppContext } from "./AppContextProvider";
 
 function Header() {
-  const { generateQuiz, setShowOptionsModule, setIsLoading } = useAppContext();
+  const {
+    generateQuiz,
+    setShowOptionsModule,
+    setIsLoading,
+    setShowMadeWithModule,
+  } = useAppContext();
 
   const handleGenerateBasicQuiz = (e) => {
     e.preventDefault();
@@ -23,7 +28,12 @@ function Header() {
       >
         Options
       </button>
-      <button className="btn btn-border btn-header">Made With</button>
+      <button
+        className="btn btn-border btn-header"
+        onClick={() => setShowMadeWithModule(true)}
+      >
+        Made With
+      </button>
     </header>
   );
 }

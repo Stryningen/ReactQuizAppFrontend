@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Question from "./Question";
 import Alternatives from "./Alternatives";
 import Header from "./Header";
@@ -6,6 +5,7 @@ import InfoContainer from "./InfoContainer";
 import ResultModule from "./ResultModule";
 import OptionsModule from "./OptionsModule";
 import ListModule from "./ListModule";
+import MadeWithModule from "./MadeWithModule";
 import { useAppContext } from "./AppContextProvider";
 
 function App() {
@@ -46,6 +46,7 @@ function App() {
         showModule={showDifficultyModule}
         setShowModule={(state) => setShowDifficultyModule(state)}
       />
+      <MadeWithModule />
     </>
   );
 }
