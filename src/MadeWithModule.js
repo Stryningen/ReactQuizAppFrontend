@@ -3,7 +3,7 @@ import { useAppContext } from "./AppContextProvider";
 function MadeWithModule() {
   const { setShowMadeWithModule, showMadeWithModule } = useAppContext();
   const triviaUrl = "https://opentdb.com/";
-  const githubUrl = "#";
+  const githubUrl = "https://github.com/Stryningen/ReactQuizAppFrontend";
 
   const closeModule = () => {
     setShowMadeWithModule(false);
