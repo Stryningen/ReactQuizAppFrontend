@@ -39,7 +39,7 @@ function Alternatives() {
   useEffect(() => {
     const answerNodes = answerContainer.current.childNodes;
     Array.from(answerNodes).map((answer) =>
-      answer.innerText == currentAnswer
+      answer.innerText === currentAnswer
         ? answer.classList.add("selected")
         : answer.classList.remove("selected")
     );

@@ -15,7 +15,7 @@ export async function getQuizSet(amount, category, difficulty) {
 
 export async function getListOfCategories() {
   const url = "https://opentdb.com/api_category.php";
-  const listOfCategories = fetch(url)
+  const listOfCategories = await fetch(url)
     .then((r) => r.json())
     .then((data) => data.trivia_categories);
   return listOfCategories;

@@ -17,7 +17,9 @@ export function AppContextProvider({ children }) {
   const [category, setCategory] = useState("");
   const [amount, setAmount] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
-  const [listOfCategories, setListOfCategories] = useState(["test"]);
+  const [listOfCategories, setListOfCategories] = useState([
+    { id: -1, name: "any" },
+  ]);
   const [showCategoriesModule, setShowCategoriesModule] = useState(false);
   const [showDifficultyModule, setShowDifficultyModule] = useState(false);
   const [showMadeWithModule, setShowMadeWithModule] = useState(false);
@@ -29,8 +31,17 @@ export function AppContextProvider({ children }) {
     { id: 2, name: "hard" },
   ];
 
-  useEffect(async () => {
-    setListOfCategories(await getListOfCategories());
+  const generateCategories = async () => {
+    let tmpList = await getListOfCategories();
+    tmpList =
+      tmpList.length > 0
+        ? [{ id: -1, name: "any" }, ...tmpList]
+        : [{ id: -1, name: "any" }];
+    setListOfCategories(tmpList);
+  };
+
+  useEffect(() => {
+    generateCategories();
   }, []);
 
   const generateQuiz = async () => {
@@ -114,7 +125,7 @@ export function AppContextProvider({ children }) {
     amount,
     isLoading,
     setIsLoading,
-    listOfCategories: [{ id: -1, name: "Any" }, ...listOfCategories],
+    listOfCategories,
     showCategoriesModule,
     setShowCategoriesModule,
     showDifficultyModule,
