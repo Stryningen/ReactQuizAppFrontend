@@ -37,13 +37,18 @@ body {
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
+  min-width: 100%;
   min-height: 12vh;
   background-color: var(--main-color);
   color: var(--secondary-color);
+}
+
+nav {
+  min-height: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-width: 100%;
 }
 
 section {
@@ -78,7 +83,6 @@ a {
 .btn {
   margin: 2px;
   min-width: 5.5rem;
-  font-size: 100%;
   font-family: inherit;
   border: none;
   outline: none;
@@ -99,8 +103,6 @@ a {
 #app {
   width: 100vw;
   min-height: 100vh;
-  background-color: var(--secondary-color);
-  color: var(--main-color);
   display: flex;
   flex-flow: column nowrap;
 }
@@ -291,4 +293,50 @@ a {
 
 .selected {
   color: var(--color-choice-darkbg);
+}
+
+/*   Media Queries   */
+
+@media screen and (min-width: 760px) {
+  .btn {
+    font-size: var(--font-size-medium);
+  }
+
+  nav {
+    min-width: 0;
+    max-width: 60ch;
+    margin: auto;
+  }
+
+  #display-alternatives *,
+  #display-question * {
+    max-width: 60ch;
+  }
+
+  #display-question {
+    font-size: var(--font-size-medium);
+  }
+
+  #info-container,
+  .choice {
+    font-size: var(--font-size-large);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  body {
+  }
+  #root {
+    overflow: hidden;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+  #app {
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 2vh auto;
+    min-height: 0;
+    max-width: 800px;
+    box-shadow: 0px 0px 1px 1px rgb(0, 0, 0, 0.7);
+  }
 }

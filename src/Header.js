@@ -16,24 +16,26 @@ function Header() {
 
   return (
     <header>
-      <button
-        className="btn btn-border btn-header"
-        onClick={(e) => handleGenerateBasicQuiz(e)}
-      >
-        New Quiz
-      </button>
-      <button
-        className="btn btn-border btn-header"
-        onClick={() => setShowOptionsModule(true)}
-      >
-        Options
-      </button>
-      <button
-        className="btn btn-border btn-header"
-        onClick={() => setShowMadeWithModule(true)}
-      >
-        Made With
-      </button>
+      <nav>
+        <button
+          className="btn btn-border btn-header"
+          onClick={(e) => handleGenerateBasicQuiz(e)}
+        >
+          New Quiz
+        </button>
+        <button
+          className="btn btn-border btn-header"
+          onClick={() => setShowOptionsModule(true)}
+        >
+          Options
+        </button>
+        <button
+          className="btn btn-border btn-header"
+          onClick={() => setShowMadeWithModule(true)}
+        >
+          Made With
+        </button>
+      </nav>
     </header>
   );
 }
